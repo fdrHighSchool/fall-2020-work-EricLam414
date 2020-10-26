@@ -3,6 +3,8 @@ import java.util.*;
 class Distance{
   public static void main(String[] args){
     Scanner s = new Scanner(System.in);
+
+    //ask for the cordinates of the two points
     System.out.println("What is the value for x1?");
     double x1 = s.nextInt();
 
@@ -14,7 +16,10 @@ class Distance{
 
     System.out.println("What is the value for y2?");
     double y2 = s.nextInt();
+
+    //calculates the shortest distance between the two points
     cartesianDistance(x1,y1,x2,y2);
+    //calculates the taxi cab distance between two points
     taxicabDistance(x1,y1,x2,y2);
 
   }
