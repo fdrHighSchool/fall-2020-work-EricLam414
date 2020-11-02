@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class FracCalc {
 
     /**
@@ -7,6 +9,10 @@ public class FracCalc {
     public static void main(String[] args){
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("What do you want to calculate?");
+        String solve = s.nextLine;
         // Checkpoint 2: Accept user input multiple times.
     }//end main method
 
