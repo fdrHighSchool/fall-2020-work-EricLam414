@@ -12,7 +12,9 @@ public class FracCalc {
         Scanner s = new Scanner(System.in);
 
         System.out.println("What do you want to calculate?");
-        String solve = s.nextLine;
+        String problem = s.nextLine();
+        String solution = produceAnswer(problem);
+        System.out.println(solution);
         // Checkpoint 2: Accept user input multiple times.
     }//end main method
 
@@ -26,6 +28,14 @@ public class FracCalc {
     public static String produceAnswer(String input){
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
+        String array1[] = input.split(" ");
+        String frac1 = array1[0];
+        String op = array1[1];
+        String frac2 = array1[2];
+
+        //String num1 = splits;
+        //String operation = splits;
+        //String num2 = splits;
         // Checkpoint 2: Return the second operand as a string representing each part.
         //               Example "4/5 * 1_2/4" returns "whole:1 numerator:2 denominator:4".
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
@@ -34,7 +44,7 @@ public class FracCalc {
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return "";
+        return frac1;
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
@@ -47,7 +57,7 @@ public class FracCalc {
      * @return The GCD.
      */
     public static int greatestCommonDivisor(int a, int b){
-
+      return 0;
     }//end greatestCommonDivisor method
 
     /**
@@ -58,7 +68,7 @@ public class FracCalc {
      * @return The LCM.
      */
     public static int leastCommonMultiple(int a, int b){
-
+      return 0;
     }//end leastCommonMultiple
 
 }//end class
