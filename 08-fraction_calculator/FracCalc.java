@@ -2,20 +2,28 @@ import java.util.*;
 
 public class FracCalc {
 
-    /**
-     * Prompts user for input, passes that input to produceAnswer, then outputs the result.
-     * @param args - unused
-     */
+        /**
+        * Prompts user for input, passes that input to produceAnswer, then outputs the result.
+        * @param args - unused
+        */
     public static void main(String[] args){
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         Scanner s = new Scanner(System.in);
+        boolean play = true;
 
-        System.out.println("What do you want to calculate?");
+        while (play){
+        System.out.println("What do you want to calculate? (enter quit to stop playing)");
         String problem = s.nextLine();
-        String solution = produceAnswer(problem);
-        System.out.println(solution);
-        // Checkpoint 2: Accept user input multiple times.
+        if (problem.contains("quit")){
+          play = false;
+        }
+        else{
+          String solution = produceAnswer(problem);
+          System.out.println(solution);
+          // Checkpoint 2: Accept user input multiple times.
+        }
+      }
     }//end main method
 
     /**
@@ -33,6 +41,39 @@ public class FracCalc {
         String op = array1[1];
         String frac2 = array1[2];
 
+        String frac2Whole =  findWhole(frac2);
+        String frac2Num =  findNumerator(frac2);
+        String frac2Denom =  findDenominator(frac2);
+        return "Whole: " + frac2Whole +  " Numerator: " + frac2Num + " Denominator: " + frac2Denom;
+      }//end of produceAnswer
+    public static String findWhole(String num){
+        if (num.contains("_")){
+          return num.substring(0, num.indexOf("_"));
+        }
+        else{
+          return "0";
+        }
+      }//end of findWhole
+    public static String findNumerator(String num){
+        if (num.contains("/")){
+          return num.substring(num.indexOf("_") + 1, num.indexOf("/"));
+        }
+        else{
+          return "0";
+        }
+
+      }//end of findNumerator
+    public static String findDenominator(String num){
+        if (num.contains("/")){
+          return num.substring(num.indexOf("/") + 1);
+        }
+        else{
+          return "1";
+        }
+      }//end of findDenominator
+
+
+
         //String num1 = splits;
         //String operation = splits;
         //String num2 = splits;
@@ -44,8 +85,6 @@ public class FracCalc {
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return frac2;
-    }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
 
