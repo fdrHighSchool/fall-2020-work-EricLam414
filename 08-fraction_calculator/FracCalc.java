@@ -41,44 +41,13 @@ public class FracCalc {
         String op = array1[1];
         String frac2 = array1[2];
 
+        // Checkpoint 2: Return the second operand as a string representing each part.
+        //               Example "4/5 * 1_2/4" returns "whole:1 numerator:2 denominator:4".
         String frac2Whole =  findWhole(frac2);
         String frac2Num =  findNumerator(frac2);
         String frac2Denom =  findDenominator(frac2);
+
         return "Whole: " + frac2Whole +  " Numerator: " + frac2Num + " Denominator: " + frac2Denom;
-      }//end of produceAnswer
-    public static String findWhole(String num){
-        if (num.contains("_")){
-          return num.substring(0, num.indexOf("_"));
-        }
-        else{
-          return "0";
-        }
-      }//end of findWhole
-    public static String findNumerator(String num){
-        if (num.contains("/")){
-          return num.substring(num.indexOf("_") + 1, num.indexOf("/"));
-        }
-        else{
-          return "0";
-        }
-
-      }//end of findNumerator
-    public static String findDenominator(String num){
-        if (num.contains("/")){
-          return num.substring(num.indexOf("/") + 1);
-        }
-        else{
-          return "1";
-        }
-      }//end of findDenominator
-
-
-
-        //String num1 = splits;
-        //String operation = splits;
-        //String num2 = splits;
-        // Checkpoint 2: Return the second operand as a string representing each part.
-        //               Example "4/5 * 1_2/4" returns "whole:1 numerator:2 denominator:4".
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
         //               Example "4/5 * 1_2/4" returns "6/5".
         //               Note: Answer does not need to be reduced, but it must be correct.
@@ -86,17 +55,60 @@ public class FracCalc {
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
 
-    // TODO: Fill in the space below with helper methods
+       }//end of produceAnswer
 
-    /**
-     * greatestCommonDivisor - Find the largest integer that evenly divides two integers.
-     *      Use this helper method in the Final Checkpoint to reduce fractions.
-     * @param a - First integer.
-     * @param b - Second integer.
-     * @return The GCD.
-     */
+    // TODO: Fill in the space below with helper methods
+     public static String findWhole(String num){
+         if (num.contains("_")){
+           return num.substring(0, num.indexOf("_"));
+         }
+         else{
+           return "0";
+         }
+       }//end of findWhole
+     public static String findNumerator(String num){
+         if (num.contains("/")){
+           return num.substring(num.indexOf("_") + 1, num.indexOf("/"));
+         }
+         else{
+           return "0";
+         }
+
+       }//end of findNumerator
+     public static String findDenominator(String num){
+         if (num.contains("/")){
+           return num.substring(num.indexOf("/") + 1);
+         }
+         else{
+           return "1";
+         }
+       }//end of findDenominator
+
+     /**
+      * greatestCommonDivisor - Find the largest integer that evenly divides two integers.
+      *      Use this helper method in the Final Checkpoint to reduce fractions.
+      * @param a - First integer.
+      * @param b - Second integer.
+      * @return The GCD.
+      */
     public static int greatestCommonDivisor(int a, int b){
-      return 0;
+      int min = 1;;
+      int gcd = 1;
+      if (a > b){
+        min = b;
+      }
+      else if (a < b){
+        min = a;
+      }
+      else if (a == b){
+        return a;
+      }
+      for (int i = 1; i <= min; i++){
+        if (a % i == 0 && b % i == 0){
+          gcd = i;
+        }
+      }
+      return gcd;
     }//end greatestCommonDivisor method
 
     /**
