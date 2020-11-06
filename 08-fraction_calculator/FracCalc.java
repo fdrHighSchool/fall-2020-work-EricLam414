@@ -14,6 +14,7 @@ public class FracCalc {
 
         while (play){
         System.out.println("What do you want to calculate? (enter quit to stop playing)");
+
         String problem = s.nextLine();
         if (problem.contains("quit")){
           play = false;
@@ -119,7 +120,8 @@ public class FracCalc {
      * @return The LCM.
      */
     public static int leastCommonMultiple(int a, int b){
-      return 0;
+      int lcm = Math.abs(a * b) / greatestCommonDivisor(a, b);
+      return lcm;
     }//end leastCommonMultiple
 
 }//end class
