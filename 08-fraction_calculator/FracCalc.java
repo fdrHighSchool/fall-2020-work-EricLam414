@@ -21,6 +21,8 @@ public class FracCalc {
         else{
           String solution = produceAnswer(problem);
           System.out.println(solution);
+          int result[] = add(1,2,3,4);
+          System.out.println(result[0] + "/" + result[1]);
           // Checkpoint 2: Accept user input multiple times.
         }
       }
@@ -71,6 +73,13 @@ public class FracCalc {
           return "1";
         }
       }//end of findDenominator
+    public static int[] add(int a, int b, int c, int d){
+      int num1 = a * d;
+      int num2 = b * c;
+      int denom = b * d;
+      int num = num1 + num2;
+      return new int[] { num, denom };
+    }
 
 
 
