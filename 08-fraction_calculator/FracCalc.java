@@ -57,50 +57,11 @@ public class FracCalc {
         String frac2Denom =  findDenominator(frac2);
         return "Whole: " + frac2Whole +  " Numerator: " + frac2Num + " Denominator: " + frac2Denom;
       }//end of produceAnswer
-    public static String findWhole(String num){
-        if (num.contains("_")){
-          return num.substring(0, num.indexOf("_"));
-        }
-        else{
-          return "0";
-        }
-      }//end of findWhole
-    public static String findNumerator(String num){
-        if (num.contains("/")){
-          return num.substring(num.indexOf("_") + 1, num.indexOf("/"));
-        }
-        else{
-          return "0";
-        }
-
-      }//end of findNumerator
-    public static String findDenominator(String num){
-        if (num.contains("/")){
-          return num.substring(num.indexOf("/") + 1);
-        }
-        else{
-          return "1";
-        }
-      }//end of findDenominator
-    public static int[] add(int a, int b, int c, int d){
-      int num1 = a * d;
-      int num2 = b * c;
-      int denom = b * d;
-      int num = num1 + num2;
-      return new int[] { num, denom };
-    }
-
-
-        //returns a string that tells you the whole, numerator and denominator
-        return "Whole: " + frac2Whole +  " Numerator: " + frac2Num + " Denominator: " + frac2Denom;
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
         //               Example "4/5 * 1_2/4" returns "6/5".
         //               Note: Answer does not need to be reduced, but it must be correct.
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
-
-
-       }//end of produceAnswer
 
      // TODO: Fill in the space below with helper methods
      /* N:findWhole
@@ -113,7 +74,7 @@ public class FracCalc {
            return num.substring(0, num.indexOf("_"));
          }
          else{
-           return "0";
+           return num;
          }
        }//end of findWhole
      /* N:findNumerator
@@ -143,7 +104,13 @@ public class FracCalc {
            return "1";
          }
        }//end of findDenominator
-
+     public static int[] add(int a, int b, int c, int d){
+         int num1 = a * d;
+         int num2 = b * c;
+         int denom = b * d;
+         int num = num1 + num2;
+         return new int[] { num, denom };
+       }
      /**
       * greatestCommonDivisor - Find the largest integer that evenly divides two integers.
       *      Use this helper method in the Final Checkpoint to reduce fractions.
