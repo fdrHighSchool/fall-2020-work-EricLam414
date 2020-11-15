@@ -25,8 +25,6 @@ public class FracCalc {
           //takes the input into produceAnswer
           String solution = produceAnswer(problem);
           System.out.println(solution);
-          int result[] = add(1,2,3,4);
-          System.out.println(result[0] + "/" + result[1]);
           // Checkpoint 2: Accept user input multiple times.
         }
       }//end of while loop
@@ -52,10 +50,40 @@ public class FracCalc {
         // Checkpoint 2: Return the second operand as a string representing each part.
         //               Example "4/5 * 1_2/4" returns "whole:1 numerator:2 denominator:4".
         //finds the whole numerator and denominator
-        String frac2Whole =  findWhole(frac2);
-        String frac2Num =  findNumerator(frac2);
-        String frac2Denom =  findDenominator(frac2);
-        return "Whole: " + frac2Whole +  " Numerator: " + frac2Num + " Denominator: " + frac2Denom;
+        int whole1 =  Integer.parseInt(findWhole(frac1));
+        int num1 =  Integer.parseInt(findNumerator(frac1));
+        int denom1 =  Integer.parseInt(findDenominator(frac1));
+        int whole2 =  Integer.parseInt(findWhole(frac2));
+        int num2 =  Integer.parseInt(findNumerator(frac2));
+        int denom2 =  Integer.parseInt(findDenominator(frac2));
+
+        int improper1 = convertImproper(whole1, num1, denom1);
+        int improper2 = convertImproper(whole2, num2, denom2);
+        int answer[] = {};
+        if (op.contains("+")){
+          if(denom1 == denom2){
+            answer = addSame(improper1, improper2, denom1);
+          }
+          else{
+            answer = add(improper1, denom1, improper2, denom2);
+          }
+        }
+        else if (op.contains("-")){
+          if(denom1 == denom2){
+            answer = subtractSame(improper1, improper2, denom1);
+          }
+          else{
+            answer = subtract(improper1, denom1, improper2, denom2);
+          }
+        }
+        else if (op.contains("*")){
+          answer = multiply(improper1, denom1, improper2, denom2);
+
+        }
+        else if (op.contains("/")){
+          answer = divide(improper1, denom1, improper2, denom2);
+        }
+        return Integer.toString(answer[0]) + "/" +  Integer.toString(answer[1]);
       }//end of produceAnswer
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
         //               Example "4/5 * 1_2/4" returns "6/5".
@@ -72,6 +100,9 @@ public class FracCalc {
      public static String findWhole(String num){
          if (num.contains("_")){
            return num.substring(0, num.indexOf("_"));
+         }
+         else if (num.contains("/")){
+           return "0";
          }
          else{
            return num;
@@ -96,21 +127,55 @@ public class FracCalc {
       * I:the fraction
       * R:the denominator
       */
-     public static String findDenominator(String num){
-         if (num.contains("/")){
-           return num.substring(num.indexOf("/") + 1);
-         }
-         else{
-           return "1";
-         }
-       }//end of findDenominator
-     public static int[] add(int a, int b, int c, int d){
-         int num1 = a * d;
-         int num2 = b * c;
-         int denom = b * d;
-         int num = num1 + num2;
-         return new int[] { num, denom };
-       }
+      public static String findDenominator(String num){
+          if (num.contains("/")){
+            return num.substring(num.indexOf("/") + 1);
+          }
+          else{
+            return "1";
+          }
+        }//end of findDenominator
+
+      public static int[] add(int a, int b, int c, int d){
+          int num1 = a * d;
+          int num2 = b * c;
+          int denom = b * d;
+          int num = num1 + num2;
+          return new int[] { num, denom };
+        }
+
+      public static int[] addSame(int a, int b, int d){
+          int num = a + b;
+          return new int[] { num, d };
+        }
+
+      public static int[] subtract(int a, int b, int c, int d){
+          int num1 = a * d;
+          int num2 = b * c;
+          int denom = b * d;
+          int num = num1 - num2;
+          return new int[] { num, denom };
+        }
+
+      public static int[] subtractSame(int a, int b, int d){
+          int num = a - b;
+          return new int[] { num, d };
+        }
+
+      public static int[] multiply(int a, int b, int c, int d){
+        int num = a * c;
+        int denom = b * d;
+        return new int[] { num, denom };
+      }
+      public static int[] divide(int a, int b, int c, int d){
+        int num = a * d;
+        int denom = b * c;
+        return new int[] { num, denom };
+      }
+      public static int convertImproper(int whole, int num, int denom){
+        int newNum = (denom * whole) + num;
+        return newNum;
+      }
      /**
       * greatestCommonDivisor - Find the largest integer that evenly divides two integers.
       *      Use this helper method in the Final Checkpoint to reduce fractions.
