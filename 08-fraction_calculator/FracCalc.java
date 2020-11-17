@@ -83,7 +83,13 @@ public class FracCalc {
         else if (op.contains("/")){
           answer = divide(improper1, denom1, improper2, denom2);
         }
-        return Integer.toString(answer[0]) + "/" +  Integer.toString(answer[1]);
+
+        int reducedFraction[] = reduceFrac(answer[0], answer[1]);
+
+        if (reducedFraction[1] == 1){
+          return Integer.toString(reducedFraction[0]);
+        }
+        return Integer.toString(reducedFraction[0]) + "/" +  Integer.toString(reducedFraction[1]);
       }//end of produceAnswer
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
         //               Example "4/5 * 1_2/4" returns "6/5".
@@ -175,6 +181,13 @@ public class FracCalc {
       public static int convertImproper(int whole, int num, int denom){
         int newNum = (denom * whole) + num;
         return newNum;
+      }
+      public static int[] reduceFrac(int num, int denom){
+        int gcd = greatestCommonDivisor(num, denom);
+
+        int reducedNum = num / gcd;
+        int reducedDenom = denom / gcd;
+        return new int[] { reducedNum, reducedDenom };
       }
      /**
       * greatestCommonDivisor - Find the largest integer that evenly divides two integers.
