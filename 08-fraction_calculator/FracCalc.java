@@ -60,36 +60,43 @@ public class FracCalc {
         int improper1 = convertImproper(whole1, num1, denom1);
         int improper2 = convertImproper(whole2, num2, denom2);
         int answer[] = {};
+        boolean error = true;
         if (denom1 == 0 || denom2 == 0){
-          return "ERROR: You cannot divide by 0";
+          return "ERROR: Cannot divide by zero.";
         }
         if (num2 == 0 && op.contains("/")){
-          return "ERROR: You cannot divide by 0";
+          return "ERROR: Cannot divide by zero.";
         }
-        if (op.contains("+")){
+        if (op.equals("+")){
           if(denom1 == denom2){
             answer = addSame(improper1, improper2, denom1);
           }
           else{
             answer = add(improper1, denom1, improper2, denom2);
           }
+          error = false;
         }
-        else if (op.contains("-")){
+        else if (op.equals("-")){
           if(denom1 == denom2){
             answer = subtractSame(improper1, improper2, denom1);
           }
           else{
             answer = subtract(improper1, denom1, improper2, denom2);
           }
+          error = false;
         }
-        else if (op.contains("*")){
+        else if (op.equals("*")){
           answer = multiply(improper1, denom1, improper2, denom2);
+          error = false;
 
         }
-        else if (op.contains("/")){
+        else if (op.equals("/")){
           answer = divide(improper1, denom1, improper2, denom2);
+          error = false;
         }
-
+        if (error == true){
+          return "ERROR: Input is in an invalid format.";
+        }
         int reducedFraction[] = reduceFrac(answer[0], answer[1]);
 
         if (reducedFraction[1] == 1){
