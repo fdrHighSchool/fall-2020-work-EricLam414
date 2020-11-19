@@ -98,11 +98,16 @@ public class FracCalc {
           return "ERROR: Input is in an invalid format.";
         }
         int reducedFraction[] = reduceFrac(answer[0], answer[1]);
+        int mixedFraction[] = toMixed(reducedFraction[0], reducedFraction[1]);
 
         if (reducedFraction[1] == 1){
           return Integer.toString(reducedFraction[0]);
         }
-        return Integer.toString(reducedFraction[0]) + "/" +  Integer.toString(reducedFraction[1]);
+
+        if (mixedFraction[0] == 0){
+          return Integer.toString(reducedFraction[0]) + "/" +  Integer.toString(reducedFraction[1]);
+        }
+        return Integer.toString(mixedFraction[0]) + "_" + Integer.toString(mixedFraction[1]) + "/" + Integer.toString(mixedFraction[2]);
       }//end of produceAnswer
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
         //               Example "4/5 * 1_2/4" returns "6/5".
@@ -201,6 +206,12 @@ public class FracCalc {
         int reducedNum = num / gcd;
         int reducedDenom = denom / gcd;
         return new int[] { reducedNum, reducedDenom };
+      }
+      public static int[] toMixed(int num, int denom){
+        int whole = num / denom;
+        int newNum = num % denom;
+
+        return new int[] { whole, newNum, denom };
       }
      /**
       * greatestCommonDivisor - Find the largest integer that evenly divides two integers.
