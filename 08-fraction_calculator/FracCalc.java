@@ -60,6 +60,12 @@ public class FracCalc {
         int improper1 = convertImproper(whole1, num1, denom1);
         int improper2 = convertImproper(whole2, num2, denom2);
         int answer[] = {};
+        if (denom1 == 0 || denom2 == 0){
+          return "ERROR: You cannot divide by 0";
+        }
+        if (num2 == 0 && op.contains("/")){
+          return "ERROR: You cannot divide by 0";
+        }
         if (op.contains("+")){
           if(denom1 == denom2){
             answer = addSame(improper1, improper2, denom1);
