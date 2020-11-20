@@ -57,17 +57,25 @@ public class FracCalc {
         int num2 =  Integer.parseInt(findNumerator(frac2));
         int denom2 =  Integer.parseInt(findDenominator(frac2));
 
+        //converts it into improper fraction
         int improper1 = convertImproper(whole1, num1, denom1);
         int improper2 = convertImproper(whole2, num2, denom2);
-        int answer[] = {};
+
+        int answer[] = {};//creates an array for the numerator and denominator
+
         boolean error = true;
+
+        //checks to see if either denominators are 0
         if (denom1 == 0 || denom2 == 0){
           return "ERROR: Cannot divide by zero.";
         }
+        //checks to see if the second number is 0 when there is a division
         if (num2 == 0 && op.contains("/")){
           return "ERROR: Cannot divide by zero.";
         }
+        //if the operand is + then it does addition
         if (op.equals("+")){
+          //checks to see if the denominator is the same before doing the operation
           if(denom1 == denom2){
             answer = addSame(improper1, improper2, denom1);
           }
@@ -76,7 +84,9 @@ public class FracCalc {
           }
           error = false;
         }
+        //if the operand is - then it does subtraction
         else if (op.equals("-")){
+          //checks to see if the denominator is the same before doing the operation
           if(denom1 == denom2){
             answer = subtractSame(improper1, improper2, denom1);
           }
@@ -85,25 +95,31 @@ public class FracCalc {
           }
           error = false;
         }
+        //if the operand is * then it does multiplication
         else if (op.equals("*")){
           answer = multiply(improper1, denom1, improper2, denom2);
           error = false;
 
         }
+        //if the operand is / then it does division
         else if (op.equals("/")){
           answer = divide(improper1, denom1, improper2, denom2);
           error = false;
         }
+        //sees if the operand is in the correct format
         if (error == true){
           return "ERROR: Input is in an invalid format.";
         }
+
+        //reduces the answer and then turns it into mixed
         int reducedFraction[] = reduceFrac(answer[0], answer[1]);
         int mixedFraction[] = toMixed(reducedFraction[0], reducedFraction[1]);
 
+        //if the denominator is 1 it just returns the numerator
         if (reducedFraction[1] == 1){
           return Integer.toString(reducedFraction[0]);
         }
-
+        //if the whole number is 0 then it just returns the fraction
         if (mixedFraction[0] == 0){
           return Integer.toString(reducedFraction[0]) + "/" +  Integer.toString(reducedFraction[1]);
         }
@@ -140,6 +156,8 @@ public class FracCalc {
      public static String findNumerator(String num){
          if (num.contains("/")){
            return num.substring(num.indexOf("_") + 1, num.indexOf("/"));
+           //returns tne numerator when there is both a whole number and when there is no whole number
+           //when there is no "_", index of returns -1 and -1 + 1 = 0 so it just returns the characters from 0 to the "/"
          }
          else{
            return "0";
@@ -160,6 +178,12 @@ public class FracCalc {
           }
         }//end of findDenominator
 
+
+     /*N:add
+      *P:adds bith fraction
+      *I:numerator and denominator for both fractions
+      *R:the numerator and denominator
+      */
       public static int[] add(int a, int b, int c, int d){
           int num1 = a * d;
           int num2 = b * c;
@@ -168,11 +192,21 @@ public class FracCalc {
           return new int[] { num, denom };
         }
 
+        /*N:add
+         *P:adds both fraction when it is the same denominator
+         *I:numerator and denominator for both fractions
+         *R:the numerator and denominator
+         */
       public static int[] addSame(int a, int b, int d){
           int num = a + b;
           return new int[] { num, d };
         }
 
+        /*N:subtract
+         *P:subtract both fraction
+         *I:numerator and denominator for both fractions
+         *R:the numerator and denominator
+         */
       public static int[] subtract(int a, int b, int c, int d){
           int num1 = a * d;
           int num2 = b * c;
@@ -181,25 +215,52 @@ public class FracCalc {
           return new int[] { num, denom };
         }
 
+        /*N:subtract
+         *P:subtracts both fractions when there are the same denominator
+         *I:numerator and denominator for both fractions
+         *R:the numerator and denominator
+         */
       public static int[] subtractSame(int a, int b, int d){
           int num = a - b;
           return new int[] { num, d };
         }
 
+        /*N:multiply
+         *P:multiplies both fractions
+         *I:numerator and denominator for both fractions
+         *R:the numerator and denominator
+         */
       public static int[] multiply(int a, int b, int c, int d){
         int num = a * c;
         int denom = b * d;
         return new int[] { num, denom };
       }
+
+      /*N:divide
+       *P:divides both fractions
+       *I:numerator and denominator for both fractions
+       *R:the numerator and denominator
+       */
       public static int[] divide(int a, int b, int c, int d){
         int num = a * d;
         int denom = b * c;
         return new int[] { num, denom };
       }
+
+      /*N:convertImproper
+       *P:takes the whole, numerator and denominator and then converts it into improper
+       *I:whole, numerator and denominator
+       *R:the numerator and denominator
+       */
       public static int convertImproper(int whole, int num, int denom){
         int newNum = (denom * whole) + num;
         return newNum;
       }
+      /*N:reduceFrac
+       *P:takes the fraction and then reduces it
+       *I:numerator and denominator
+       *R:the numerator and denominator reduced
+       */
       public static int[] reduceFrac(int num, int denom){
         int gcd = greatestCommonDivisor(num, denom);
 
@@ -207,6 +268,11 @@ public class FracCalc {
         int reducedDenom = denom / gcd;
         return new int[] { reducedNum, reducedDenom };
       }
+      /*N:toMixed
+       *P:takes the fraction and then converts it into mixed
+       *I:numerator and denominator
+       *R:the whole, numerator and denominator
+       */
       public static int[] toMixed(int num, int denom){
         int whole = num / denom;
         int newNum = num % denom;
