@@ -290,19 +290,22 @@ public class FracCalc {
       //sets the variables
       int min = 1;
       int gcd = 1;
+
+      int aAbs = Math.abs(a);
+      int bAbs = Math.abs(b);
       //sees if which is the min of a and b
-      if (a > b){
-        min = b;
+      if (aAbs > bAbs){
+        min = bAbs;
       }
-      else if (a < b){
-        min = a;
+      else if (aAbs < bAbs){
+        min = aAbs;
       }
-      else if (a == b){
-        return a;
+      else if (aAbs == bAbs){
+        return aAbs;
       }
       //finds the gcd
       for (int i = 1; i <= min; i++){
-        if (a % i == 0 && b % i == 0){
+        if (aAbs % i == 0 && bAbs % i == 0){
           gcd = i;
         }
       }
