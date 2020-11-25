@@ -3,9 +3,7 @@ public class FizzBuzz{
 
     for(int i = 1; i <= 100; i++){
       //insert logic here to execute FizzBuzz and generate output
-      boolean fizz = isFizz(i);
-      boolean buzz = isBuzz(i);
-      System.out.println(i + " : " + (fizz &&  buzz ? "FizzBuzz" : (fizz ? "Fizz" : (buzz ? "Buzz" : i))));
+      System.out.println(i + " : " + (isFizz(i) &&  isBuzz(i) ? "FizzBuzz" : (isFizz(i) ? "Fizz" : (isBuzz(i) ? "Buzz" : i))));
     }//end for loop
 
   }//end main method
