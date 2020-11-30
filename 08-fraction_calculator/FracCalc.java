@@ -70,8 +70,8 @@ public class FracCalc {
           return "ERROR: Cannot divide by zero.";
         }
         //checks to see if the second number is 0 when there is a division
-        if (num2 == 0 && op.contains("/")){
-          return "ERROR: Cannot divide by zero.";
+        if (whole2 == 0 && op.contains("/")){
+          return "ERROR: Cannot divide by zero." ;
         }
         //if the operand is + then it does addition
         if (op.equals("+")){
