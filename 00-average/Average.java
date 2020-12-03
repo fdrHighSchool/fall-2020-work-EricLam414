@@ -9,14 +9,15 @@ class Average {
     System.out.println("How many test do you want to find the average of? ");
     int total = s.nextInt();
     //asks the user how many tests he wants to find the average of
+    int array[] = new int[total];
 
     for (int i = 0; i < total; i++){
       System.out.println("What is the test score? ");
-      Sum += s.nextInt();
+      array[i] = s.nextInt();
     }
-    //for loop to add all the scores together
+    //for loop to assign a value to the array
 
-    double average = Sum / total;
+    double average = (array[0] + array[1] + array[2] + array[3] + array[4]) / total;
     //divides why the amount of scores to find average
 
     System.out.println("The average score for the " + total + " tests you took is " + average);
