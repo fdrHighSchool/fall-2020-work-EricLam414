@@ -1,0 +1,15 @@
+Create a txt file with all the dimensions
+
+
+Repeat for all dimensions
+	Take out one dimension each time
+
+	Split the dimensions into l,w and h
+
+	total += 2lw + 2wh +2hl
+
+	Compare lw and wh to find the smaller value
+	Then compare the smaller of the values with hl to get the smallest value.
+	add the smallest value into total
+
+print out the total.

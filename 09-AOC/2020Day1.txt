@@ -1,0 +1,13 @@
+Get the values
+
+Put the values into an array
+
+
+While sum is not 2020
+    for loop to set the first number
+	for loop for the length of the array
+		add the first number with the other numbers one by one
+		see if the sum is 2020, if not repeat it
+	
+
+multiple the two numbers that give the sum 
