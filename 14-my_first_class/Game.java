@@ -23,21 +23,33 @@ public class Game {
   public int getRange(){
     return this.likeRange;
   }
-  public boolean getFavorite(){
-    return this.favorite;
-  }
   public void setName(String name){
     this.name = name;
   }
   public void setGenre(String genre){
     this.genre = genre;
   }
-  public void isFavorite(){
+  public boolean isFavorite(){
     if(this.likeRange == 5){
-      this.favorite = true;
+      return true;
     }
     else{
-      this.favorite = false;
+      return false;
+    }
+  }
+  public void giveRecomended(){
+    String genre = this.genre.toLowerCase();
+    if(genre.equals("fps")){
+      System.out.println("Some recomended FPS games: CSGO, Valorant, Call of Duty, or Team Fortress 2");
+    }
+    else if (genre.equals("puzzle")){
+        System.out.println("Some recomended Puzzle games: Tetris, Sudoku, 2048, or Mahjong");
+    }
+    else if (genre.equals("sandbox")){
+        System.out.println("Some recomended Sandbox games: Minecraft, Roblox, Terraria and Growtopia ");
+    }
+    else{
+      System.out.println("Sorry, we can not find any recomended games for your genre");
     }
   }
 }
